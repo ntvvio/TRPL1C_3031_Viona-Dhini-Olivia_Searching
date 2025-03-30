@@ -1,0 +1,28 @@
+import 'dart:io';
+
+int binarySearch(List<int> arr, int l, int r, int x) {
+  int comparisons = 0;
+  while (l <= r) {
+    comparisons++;
+    int m = (l + r) ~/ 2;
+    if (arr[m] == x) {
+      print("Elemen ditemukan di index: $m dengan perbandingan: $comparisons");
+      return comparisons;
+    } else if (arr[m] > x) {
+      r = m - 1;
+    } else {
+      l = m + 1;
+    }
+  }
+  print("Elemen tidak ditemukan. Perbandingan yang dibuat: $comparisons");
+  return comparisons;
+}
+
+void main() {
+  List<int> arr = [2, 3, 4, 10, 66];
+  stdout.write("Masukkan elemen yang ingin dicari: ");
+  String? input = stdin.readLineSync();
+  int x = int.tryParse(input ?? '') ?? -1;
+  int size = arr.length;
+  binarySearch(arr, 0, size - 1, x);
+}
